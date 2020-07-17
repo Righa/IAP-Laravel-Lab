@@ -83,7 +83,7 @@
                     @else
 
                     <div class="card-body">
-                        <p>There are no cars in the records <a href="{{ route('login') }}">login</a> to add records</p>
+                        <p>There are no cars to review <a href="{{ route('login') }}">login</a> to add records</p>
                     </div>
 
                     @endif

@@ -16,12 +16,14 @@ class HomeController extends Controller
     public function index()
     {
         $cars = Car::all();
+        $reviews[0] = 'no reviews';
 
         foreach ($cars as $car) {
             $reviews[$car->id] = $car->reviews;
         }
 
         return view('home', ['cars' => $cars, 'reviews' => $reviews ]);
+
     }
 
     /**

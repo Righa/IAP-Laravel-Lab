@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Review;
 
 class ReviewsController extends Controller
 {
@@ -25,7 +26,21 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'car_id' => 'required',
+            'comment' => 'required'
+        ]);
+
+        $review = new Review;
+        $review->rating = 1;
+        $review->car_id = $request->car_id;
+        $review->comment = $request->comment;
+        $review->save();
+
+        return response([
+            'success' => true,
+            'message' => 'review has been saved!!',
+        ]);
     }
 
     /**

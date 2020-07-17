@@ -1,25 +1,17 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
 ### API routes
 
 @todo
 
-login 		/api/login
-register 	/api/register
+<table>
+	<tbody>
+		<tr><td>login </td> <td>POST</td> <td>http://127.0.0.1:8000/api/login</td> <td>email,passpword</td> <td>(all required)</td></tr>
+		<tr><td>register</td> <td>POST</td> <td>http://127.0.0.1:8000/api/register</td> <td>name,email,password</td> <td>(all required)</td></tr>
+		<tr><td>all cars</td> <td>GET</td> <td>http://127.0.0.1:8000/api/cars</td> <td></td> <td></td></tr>
+		<tr><td>create a car</td> <td>POST</td> <td>http://127.0.0.1:8000/api/cars</td> <td>avatar,make,model,produced_on</td> <td>(all required)</td></tr>
+		<tr><td>specific car</td> <td>GET</td> <td>http://127.0.0.1:8000/api/cars/{id}</td> <td></td> <td></td></tr>
+		<tr><td>update car</td> <td>PUT/PATCH</td> <td>http://127.0.0.1:8000/api/cars/{id}</td> <td>avatar/make/model/produced_on</td> <td>(one or many)</td></tr>
+		<tr><td>delete car</td> <td>DELETE</td> <td>http://127.0.0.1:8000/api/cars/{id}</td> <td></td> <td></td></tr>
+		<tr><td>review a car</td> <td>POST</td> <td>http://127.0.0.1:8000/api/review</td> <td>car_id, comment</td> <td>(all required)</td></tr><tr>
+	</tbody>
+</table>				
 
-all cars		GET			api/cars
-create a car 	POST		api/cars
-specific car 	GET			api/cars/{id}
-update car 		PUT/PATCH	api/cars/{id}
-delete car 		DELETE		api/cars/{id}
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

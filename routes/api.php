@@ -14,13 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('allcars', 'Api\CarController@index');
+Route::post('login', 'Api\AuthController@login');
+Route::post('register', 'Api\AuthController@register');
+Route::post('logout', 'Api\AuthController@logout'); # ??
+
 
 Route::group(['middleware' => 'auth:api'], function() {
 
+	Route::post('review', 'Api\ReviewsController@store');
+
+
 	Route::apiResources([
-		'car' => 'Api\CarController',
+		'cars' => 'Api\CarController',
 	]);
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
