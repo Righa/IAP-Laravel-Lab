@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('allcars', 'Api\CarController@index');
+
+Route::group(['middleware' => 'auth:api'], function() {
+
+	Route::apiResources([
+		'car' => 'Api\CarController',
+	]);
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+

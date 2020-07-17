@@ -1,39 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Car</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+
+@extends('layouts.app')
+
+@section('content')
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-8">
+		<div class="col-md-10">
 			<div class="card">
-				<div class="card-header"><h1>Car: {{ $car->id }}</h1></div>
+				<div class="card-header">
+					<h1>Car: {{ $car->id }}</h1>
+					<a class="btn btn-primary" href="{{ url('/') }}"><strong>&lt Back</strong></a>
+				</div>
 				<div class="card-body">
-					<form class="form" id="editcar" method="post" action="{{ url('car/edit/'.$car->id) }}" enctype="multipart/form-data">
-						@csrf
+					<div class="row">
+					<div class="col">
 						<div class="form-group">
-							<label>Make:</label>
-							<input class="form-control" type="text" value="{{ $car->make }}" name="make">
+							<img alt="no image" class="img-thumbnail" style="min-height: 222px; min-width: 333px; width: 333px;" src="{{ Storage::url($car->avatar) }}">
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<strong>Make:</strong><p>{{ $car->make }}</p>
 						</div>
 						<div class="form-group">
-							<label>Model: </label>
-							<input class="form-control" type="text" value="{{ $car->model }}" name="model">
+							<strong>Model:</strong><p>{{ $car->model }}</p>
 						</div>
 						<div class="form-group">
-							<label>Produced on:</label>
-							<input class="form-control" type="date" value="{{ $car->produced_on }}" name="produced_on">
+							<strong>Produced on:</strong><p>{{ $car->produced_on }}</p>
 						</div>
-						<div class="form-group">
-							<a class="btn btn-secondary" href="{{ url('car') }}">Cancel</a>
-							<button style="float: right;" type="submit" class="btn btn-primary">Update</button>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col">
+						<div class="card">
+							<div class="card-header"><strong>Reviews</strong></div>
+							@foreach($reviews as $review)
+							<div class="card-body">
+								<div class="card"><div class="card-body"><strong>Anon:</strong><p>{{ $review->comment }}</p></div></div>
+							</div>
+							@endforeach
 						</div>
-					</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-</body>
-</html>
+
+@endsection

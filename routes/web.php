@@ -13,21 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index');
+Route::get('onecar/{id}', 'HomeController@show');
 
-Route::get('car', 'CarController@allcars');
-Route::get('car/{id}', 'CarController@particularcar');
+	Route::resources([
+    	'review' => 'ReviewsController',
+	]);
 
-Route::get('newcar', 'CarController@create');
-Route::post('car', 'CarController@newcar');
-
-Route::get('car/edit', 'CarController@edit');
-Route::post('car/edit/{id}', 'CarController@update');
-
-Route::post('car/{id}', 'CarController@destroy');
+Route::group(['middleware' => 'auth'], function() {
+	Route::resources([
+    	'cars' => 'CarController',
+	]);
+});
