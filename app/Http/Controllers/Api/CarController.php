@@ -105,21 +105,27 @@ class CarController extends Controller
 
         $car = Car::find($id);
 
+        $trash = 0;
+
         if($r->hasfile('avatar'))
         {
             $file_type = $r->avatar->extension();
 
             if ( $file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" && $file_type != "gif" ) {
-                $request->session()->flash('file_error', 'Avatar should be an image');
-                return view('addcar');
-            } 
+                return response([
+                    'success' => false,
+                    'message' => 'avatar should be an image'
+                ]);
+            }
 
             Storage::delete($car->avatar);
 
             $path = $r->avatar->store('public/images');
             $car->avatar = $path;
         }
-        $trash = 0;
+        else {
+            $trash++;
+        }
 
         ($r->make) ? $car->make = $r->make: $trash++;
         ($r->model) ? $car->model = $r->model: $trash++;
@@ -130,7 +136,7 @@ class CarController extends Controller
             'message' => 'car details have been changed!!'
         ];
         
-        ($trash < 3) ? $car->save(): $response = [ 'success' => false, 'message' => 'provide at least one car details to be changed!!' ];
+        ($trash < 4) ? $car->save(): $response = [ 'success' => false, 'message' => 'provide at least one car details to be changed!!' ];
 
         return response($response);
     }
