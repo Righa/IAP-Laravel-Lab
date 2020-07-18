@@ -1,4 +1,4 @@
-### API routes
+# API routes
 
 <table>
 	<tbody>
