@@ -23,7 +23,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 	Route::post('review', 'Api\ReviewsController@store');
 
-
 	Route::apiResources([
 		'cars' => 'Api\CarController',
 	]);

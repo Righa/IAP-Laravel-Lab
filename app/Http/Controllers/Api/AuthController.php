@@ -42,7 +42,6 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-
     	$cooked = $request->validate([
     		'name' => 'required|max:55',
     		'email' => 'email|required|unique:users',
@@ -65,7 +64,12 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
+    	$cooked = $request->validate([
+    		'token' => 'required'
+    	]);
+
     	$tokenRepository = app('Laravel\Passport\TokenRepository');
     	$tokenRepository->revokeAccessToken($request->token);
+    	return response(['success' =>true, 'message' => 'you have been logged out']);
     }
 }
